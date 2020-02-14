@@ -1,0 +1,27 @@
+.col-4 {
+    flex: 5 0 33.333333%;
+    max-width: 45.333333%;
+}
+.col-2 {
+    flex: 0 0 16.666667%;
+    max-width: 12.666667%;
+}
+@media (min-width: 1200px){
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+    /* max-width: 1214px; */
+    max-width: 100%;
+    background: #34b355ed;
+    height: 50px;
+}
+}
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+    /* max-width: 1214px; */
+    max-width: 100%;
+    background: #34b355ed;
+    height: 50px;
+}
+.nav{
+    max-width: 100%;
+    background: #3edc67f2;
+    height: 50px; 
+}

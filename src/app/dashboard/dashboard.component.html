@@ -1,0 +1,214 @@
+<div class="container">
+    <div class="row" style="padding-top: 10px;">
+      <div class="col-3">
+        <h6>Add/Update Config</h6>
+        <form>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Cobrand</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputEmail3">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Param</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputPassword3">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Value</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputPassword3">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-2">Override</div>
+            <div style="margin-left: 40px;">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck1">
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Add/Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-3">
+        <h6>Import Cobrand Config</h6>
+        <form>
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-1 col-form-label">CSV file</label>
+            <div class="col-sm-10">
+              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-3">
+        <h6>Export Cobrand Config</h6>
+        <form>
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-6 col-form-label">Cobrand(set it to -1. if you want to exportall)</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="inputPassword3">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Export</button>
+              </div>
+            </div>
+        </form>
+      </div>
+      <div class="col-3">
+        <h6>Clear Cobrand Config Cache</h6>
+        <form>
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Clear</button>
+              </div>
+            </div>
+        </form>
+    
+      </div>
+    </div>
+  </div>
+
+  <hr class="horizontal">
+  <div class="mat-elevation-z8"style="margin-left: 30px;
+  margin-right: 30px;
+  padding-left: 86px;">
+    <form>
+       <table mat-table [dataSource]="searchInfo" matSort style="width: 100%;">
+     
+
+          <ng-container matColumnDef="cobrand">
+             <th mat-header-cell [ngStyle]="{display : (isStateAdmin ? 'table-cell' : 'none')}"
+                *matHeaderCellDef mat-sort-header>Cobrand</th>
+             <td mat-cell [ngStyle]="{display:(isStateAdmin ? 'table-cell' : 'none')}"
+                *matCellDef="let row">
+                {{row.cobrand}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="editcobrand">
+            <th mat-header-cell [ngStyle]="{display : (!isStateAdmin ? 'table-cell' : 'none')}"
+               *matHeaderCellDef mat-sort-header> Cobrand </th>
+            <td mat-cell [ngStyle]="{display : (!isStateAdmin ? 'table-cell' : 'none')}"
+               *matCellDef="let row; let i = index;">
+              
+                  <mat-form-field floatLabel="never" class="custom-input-size1">
+                     <input name="cobrand{{i}}"
+                        matInput [(ngModel)]="row.cobrand"
+                        [disabled]="!row.edited" number required>
+                  </mat-form-field>
+             
+            </td>
+         </ng-container>
+          <ng-container matColumnDef="param">
+             <th mat-header-cell [ngStyle]="{display : (isStateAdmin ? 'table-cell' : 'none')}"
+                *matHeaderCellDef mat-sort-header>Param</th>
+             <td mat-cell [ngStyle]="{display:(isStateAdmin ? 'table-cell' : 'none')}"
+                *matCellDef="let row">
+                {{row.param}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="editparam">
+             <th mat-header-cell [ngStyle]="{display : (!isStateAdmin ? 'table-cell' : 'none')}"
+                *matHeaderCellDef mat-sort-header> Param</th>
+             <td mat-cell [ngStyle]="{display : (!isStateAdmin ? 'table-cell' : 'none')}"
+                *matCellDef="let row; let i = index;">
+                <mat-form-field floatLabel="never" class="custom-input-size1">
+                   <input matInput [(ngModel)]="row.param" name="param{{i}}"
+                      [disabled]="!row.edited" number required>
+                </mat-form-field>
+             </td>
+          </ng-container>
+
+          <ng-container matColumnDef="value">
+            <th mat-header-cell [ngStyle]="{display : (isStateAdmin ? 'table-cell' : 'none')}"
+               *matHeaderCellDef mat-sort-header>Value</th>
+            <td mat-cell [ngStyle]="{display:(isStateAdmin ? 'table-cell' : 'none')}"
+               *matCellDef="let row">
+               {{row.value}} </td>
+         </ng-container>
+
+          <ng-container matColumnDef="editvalue">
+            <th mat-header-cell [ngStyle]="{display : (!isStateAdmin ? 'table-cell' : 'none')}"
+               *matHeaderCellDef mat-sort-header> Value</th>
+            <td mat-cell [ngStyle]="{display : (!isStateAdmin ? 'table-cell' : 'none')}"
+               *matCellDef="let row; let i = index;">
+               <mat-form-field floatLabel="never" class="custom-input-size1">
+                  <input matInput [(ngModel)]="row.value" name="value{{i}}"
+                     [disabled]="!row.edited" number required>
+               </mat-form-field>
+            </td>
+         </ng-container>
+         
+ 
+          <ng-container matColumnDef="actions">
+             <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+             <td mat-cell *matCellDef="let row; let i = index;">
+                <div style="display: flex;">
+                   <mat-icon *ngIf="!row.edited" matSuffix mat-icon-button aria-label="Clear"
+                      matTooltip="Edit / Update" color="primary" class="editButton"
+                      (click)="editedIcon(row);">edit
+                   </mat-icon>
+                   <span>
+                      <mat-icon *ngIf="!row.edited" class="editButton" color="primary"
+                         matTooltip="Delete" (click)="deleteRow(row);">delete
+                      </mat-icon>
+                   </span>
+
+                </div>
+                <div style="display: flex;">
+                   <button type="submit" *ngIf="row.edited"
+                      [disabled]="!row.cobrand || !row.param || !row.value"
+                      (click)="updateDetails(row);" class="editButton saveButton" mat-raised-button
+                      color="primary">
+                      <mat-icon matSuffix mat-icon-button aria-label="Clear" matTooltip="Save">save
+                      </mat-icon>
+                   </button>
+                   <mat-icon *ngIf="row.edited" matSuffix mat-icon-button aria-label="Clear"
+                      class="editButton" matTooltip="Reset" color="primary"
+                      style="padding-top: 8px;" (click)="resetDetails(row);">refresh</mat-icon>
+                </div>
+             </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index;"
+             [class.selected]="selectedRow == row.id"
+             [class.edited]="row.edited || row.id == undefined">
+          </tr>
+       </table>
+    </form>
+    <mat-paginator [pageSizeOptions]="[5, 10,15]">
+    </mat-paginator>
+ </div>
+
+
+ <div class="modal fade" id="deleteModal" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <p>Click Ok to Delete!</p>
+        <p>Click Cancel to Close!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="deleteRecord()" class="btn btn-primary" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
